@@ -39,7 +39,7 @@ var githubPipeline = new GithubPipeline
 
                     TargetDotNetVersion = new TargetDotNetVersion
                     {
-                        DotNetVersion = "3.1.426"
+                        DotNetVersion = "6.0.412"
                     }
                 },
 
