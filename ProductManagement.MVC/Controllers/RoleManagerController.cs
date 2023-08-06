@@ -1,14 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ProductManagement.MVC.Models;
 using System.Threading.Tasks;
 
 namespace ProductManagement.MVC.Controllers
 {
     public class RoleManagerController : Controller
     {
-        private readonly RoleManager<IdentityRole> _roleManager;
-        public RoleManagerController(RoleManager<IdentityRole> roleManager)
+        private readonly RoleManager<ApplicationRole> _roleManager;
+        public RoleManagerController(RoleManager<ApplicationRole> roleManager)
         {
             _roleManager = roleManager;
         }
@@ -22,7 +23,7 @@ namespace ProductManagement.MVC.Controllers
         {
             if (roleName != null)
             {
-                await _roleManager.CreateAsync(new IdentityRole(roleName.Trim()));
+                await _roleManager.CreateAsync(new ApplicationRole { Name = roleName.Trim() });
             }
             return RedirectToAction("Index");
         }

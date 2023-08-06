@@ -11,9 +11,9 @@ namespace ProductManagement.MVC.Controllers
     public class UserRolesController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly RoleManager<ApplicationRole> _roleManager;
 
-        public UserRolesController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public UserRolesController(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
         {
             _roleManager = roleManager;
             _userManager = userManager;
@@ -49,7 +49,7 @@ namespace ProductManagement.MVC.Controllers
             {
                 var userRolesViewModel = new ManageUserRolesViewModel
                 {
-                    RoleId = role.Id,
+                    RoleId = role.Id.ToString(),
                     RoleName = role.Name
                 };
                 if (await _userManager.IsInRoleAsync(user, role.Name))
