@@ -15,7 +15,7 @@ jobs:
     - name: Installing .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.426
+        dotnet-version: 6.0.412
         include-prerelease: false
     - name: Restoring Nuget Packages
       run: dotnet restore
