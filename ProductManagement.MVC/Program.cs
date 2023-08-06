@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ProductManagement.MVC.Brokers.StorageBrokers;
 using ProductManagement.MVC.Data;
 using ProductManagement.MVC.Models;
 using System;
@@ -21,7 +22,7 @@ namespace ProductManagement.MVC
                 var loggerFactory = services.GetRequiredService<ILoggerFactory>();
                 try
                 {
-                    var context = services.GetRequiredService<ApplicationDbContext>();
+                    var context = services.GetRequiredService<StorageBroker>();
                     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
                     var roleManager = services.GetRequiredService<RoleManager<ApplicationRole>>();
                     await ContextSeed.SeedRolesAsync(userManager, roleManager);
