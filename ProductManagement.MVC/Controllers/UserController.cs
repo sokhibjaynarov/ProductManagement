@@ -42,5 +42,36 @@ namespace ProductManagement.MVC.Controllers
 
             return RedirectToAction("Index");
         }
+
+        // GET: For details user
+        public async Task<ActionResult> Details(Guid Id)
+        {
+            var user = await userManagementBroker.SelectUserByIdAsync(Id);
+
+            return View(user);
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Create(ApplicationUser user)
+        {
+            await userManagementBroker.InsertUserAsync(user, "!MyNewPassword)1");
+            ViewBag.Message = "Data Insert Successfully";
+            return RedirectToAction("Index");
+        }
+
+        public async Task<ActionResult> Delete(Guid Id)
+        {
+            var user = await userManagementBroker.SelectUserByIdAsync(Id);
+
+            await userManagementBroker.DeleteUserAsync(user);
+            ViewBag.Messsage = "Record Delete Successfully";
+            return RedirectToAction("index");
+        }
     }
 }

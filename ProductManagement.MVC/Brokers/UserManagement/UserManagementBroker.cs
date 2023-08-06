@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using ProductManagement.MVC.Models;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using System;
-using ProductManagement.MVC.Models;
 
 namespace ProductManagement.MVC.Brokers.UserManagement
 {

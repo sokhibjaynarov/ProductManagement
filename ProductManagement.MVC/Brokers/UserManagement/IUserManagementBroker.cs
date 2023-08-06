@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using ProductManagement.MVC.Models;
 using System;
-using ProductManagement.MVC.Models;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ProductManagement.MVC.Brokers.UserManagement
 {
