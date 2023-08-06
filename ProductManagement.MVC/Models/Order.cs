@@ -11,6 +11,7 @@ namespace ProductManagement.MVC.Models
         public Guid OrderId { get; set; } 
 
         public OrderStatus Status { get; set; }
+
         public string TypeOfProduct { get; set; }
 
         public int High { get; set; }
@@ -26,5 +27,7 @@ namespace ProductManagement.MVC.Models
         public DateTime CreateDate { get; set; }
 
         public Guid CompanyId { get; set; }
+
+        public Guid WorkerId { get; set; }
     }
 }
