@@ -1,12 +1,14 @@
-﻿using System.Linq;
-using System;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using ProductManagement.MVC.Models;
 
 namespace ProductManagement.MVC.Brokers.StorageBrokers
 {
     public partial class StorageBroker
     {
+        public DbSet<Order> Orders { get; set; }
         public async ValueTask<Order> InsertOrderAsync(Order order) =>
             await InsertAsync(order);
 
