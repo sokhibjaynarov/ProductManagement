@@ -7,15 +7,15 @@ namespace ProductManagement.MVC.Data
 {
     public static class ContextSeed
     {
-        public static async Task SeedRolesAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public static async Task SeedRolesAsync(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
         {
             //Seed Roles
-            await roleManager.CreateAsync(new IdentityRole(Enums.Roles.SuperAdmin.ToString()));
-            await roleManager.CreateAsync(new IdentityRole(Enums.Roles.Admin.ToString()));
-            await roleManager.CreateAsync(new IdentityRole(Enums.Roles.Manager.ToString()));
-            await roleManager.CreateAsync(new IdentityRole(Enums.Roles.Worker.ToString()));
+            await roleManager.CreateAsync(new ApplicationRole { Name = Enums.Roles.SuperAdmin.ToString() });
+            await roleManager.CreateAsync(new ApplicationRole { Name = Enums.Roles.Admin.ToString() });
+            await roleManager.CreateAsync(new ApplicationRole { Name = Enums.Roles.Manager.ToString() });
+            await roleManager.CreateAsync(new ApplicationRole { Name = Enums.Roles.Worker.ToString() });
         }
-        public static async Task SeedSuperAdminAsync(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
+        public static async Task SeedSuperAdminAsync(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
         {
             //Seed Default User
             var defaultUser = new ApplicationUser

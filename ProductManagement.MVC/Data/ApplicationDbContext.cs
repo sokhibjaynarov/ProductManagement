@@ -2,10 +2,11 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using ProductManagement.MVC.Models;
+using System;
 
 namespace ProductManagement.MVC.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -20,32 +21,32 @@ namespace ProductManagement.MVC.Data
                 entity.ToTable(name: "User");
             });
 
-            builder.Entity<IdentityRole>(entity =>
+            builder.Entity<ApplicationRole>(entity =>
             {
                 entity.ToTable(name: "Role");
             });
-            builder.Entity<IdentityUserRole<string>>(entity =>
+            builder.Entity<IdentityUserRole<Guid>>(entity =>
             {
                 entity.ToTable("UserRoles");
             });
 
-            builder.Entity<IdentityUserClaim<string>>(entity =>
+            builder.Entity<IdentityUserClaim<Guid>>(entity =>
             {
                 entity.ToTable("UserClaims");
             });
 
-            builder.Entity<IdentityUserLogin<string>>(entity =>
+            builder.Entity<IdentityUserLogin<Guid>>(entity =>
             {
                 entity.ToTable("UserLogins");
             });
 
-            builder.Entity<IdentityRoleClaim<string>>(entity =>
+            builder.Entity<IdentityRoleClaim<Guid>>(entity =>
             {
                 entity.ToTable("RoleClaims");
 
             });
 
-            builder.Entity<IdentityUserToken<string>>(entity =>
+            builder.Entity<IdentityUserToken<Guid>>(entity =>
             {
                 entity.ToTable("UserTokens");
             });
