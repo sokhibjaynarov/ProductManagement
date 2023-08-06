@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProductManagement.MVC.Models;
+using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 
 namespace ProductManagement.MVC.Areas.Identity.Pages.Account.Manage
 {

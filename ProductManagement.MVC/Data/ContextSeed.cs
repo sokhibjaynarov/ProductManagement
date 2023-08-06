@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
+using ProductManagement.MVC.Models;
 using System.Linq;
 using System.Threading.Tasks;
-using ProductManagement.MVC.Models;
 
 namespace ProductManagement.MVC.Data
 {

@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using ProductManagement.MVC.Models;
+using System.Threading.Tasks;
 
 namespace ProductManagement.MVC.Areas.Identity.Pages.Account.Manage
 {
