@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductManagement.MVC", "Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.MVC.Infrastructure.Build", "ProductManagement.MVC.Infrastructure.Build\ProductManagement.MVC.Infrastructure.Build.csproj", "{2CFF3CCF-2827-4644-BD70-A5F5E00322BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductManagement.MVC.Tests.Unit", "ProductManagement.MVC.Tests.Unit\ProductManagement.MVC.Tests.Unit.csproj", "{A2145363-DDD1-45D0-9811-F9B5310BDDC6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2CFF3CCF-2827-4644-BD70-A5F5E00322BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CFF3CCF-2827-4644-BD70-A5F5E00322BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2CFF3CCF-2827-4644-BD70-A5F5E00322BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2145363-DDD1-45D0-9811-F9B5310BDDC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2145363-DDD1-45D0-9811-F9B5310BDDC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2145363-DDD1-45D0-9811-F9B5310BDDC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2145363-DDD1-45D0-9811-F9B5310BDDC6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
