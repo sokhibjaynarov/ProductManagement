@@ -4,7 +4,7 @@
     {
         SuperAdmin,
         Admin,
-        Moderator,
-        Basic
+        Manager,
+        Worker
     }
 }
