@@ -13,9 +13,8 @@ namespace ProductManagement.MVC.Brokers.StorageBrokers
         public IQueryable<Order> SelectAllOrders() =>
             SelectAll<Order>();
 
-        public async ValueTask<Order> SelectOrderByIdAsync(Guid o
-            rderId) =>
-            await SelectAsync<Order>(OrderId);
+        public async ValueTask<Order> SelectOrderByIdAsync(Guid orderId) =>
+            await SelectAsync<Order>(orderId);
 
         public async ValueTask<Order> UpdateOrderAsync(Order order) =>
             await UpdateAsync<Order>(order);

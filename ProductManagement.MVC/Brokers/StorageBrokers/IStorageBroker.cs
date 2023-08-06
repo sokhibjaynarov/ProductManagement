@@ -1,6 +1,8 @@
 ﻿namespace ProductManagement.MVC.Brokers.StorageBrokers
 {
-    public interface IStorageBroker
+    public partial interface IStorageBroker
     {
+        public partial interface IStorageBroker
+        { }
     }
 }
