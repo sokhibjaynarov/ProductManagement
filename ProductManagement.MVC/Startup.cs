@@ -7,6 +7,9 @@ using Microsoft.Extensions.Hosting;
 using ProductManagement.MVC.Brokers.StorageBrokers;
 using ProductManagement.MVC.Brokers.UserManagement;
 using ProductManagement.MVC.Models;
+using ProductManagement.MVC.Services.Companies;
+using ProductManagement.MVC.Services.Orders;
+using ProductManagement.MVC.Services.OrderService;
 
 namespace ProductManagement.MVC
 {
@@ -32,7 +35,10 @@ namespace ProductManagement.MVC
             services.AddControllersWithViews();
             services.AddRazorPages();
 
+            services.AddTransient<IStorageBroker, StorageBroker>();
             services.AddScoped<IUserManagementBroker, UserManagementBroker>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<ICompanyService, CompanyService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

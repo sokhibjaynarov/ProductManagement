@@ -8,11 +8,11 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace ProductManagement.MVC.Services.Companies
 {
-    public class CompanyServicecs : ICompanyService
+    public class CompanyService : ICompanyService
     {
         private readonly IStorageBroker storageBroker;
 
-        public CompanyServicecs(IStorageBroker storageBroker)
+        public CompanyService(IStorageBroker storageBroker)
         {
             this.storageBroker = storageBroker;
         }
