@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ProductManagement.MVC.Brokers.StorageBrokers;
 using ProductManagement.MVC.Brokers.UserManagement;
-using ProductManagement.MVC.Data;
 using ProductManagement.MVC.Models;
 
 namespace ProductManagement.MVC
@@ -23,11 +22,13 @@ namespace ProductManagement.MVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<StorageBroker>();
+
             services.AddIdentity<ApplicationUser, ApplicationRole>()
-                    .AddEntityFrameworkStores<ApplicationDbContext>()
+                    .AddEntityFrameworkStores<StorageBroker>()
                     .AddDefaultUI()
-            .AddDefaultTokenProviders();
+                    .AddDefaultTokenProviders();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
 
