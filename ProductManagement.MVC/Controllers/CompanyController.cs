@@ -38,6 +38,9 @@ namespace ProductManagement.MVC.Controllers
             var existCompany = await companyService.RetrieveCompanyByIdAsync(company.CompanyId);
 
             existCompany.CompanyName = company.CompanyName;
+            existCompany.INN = company.INN;
+            existCompany.Address = company.Address;
+            existCompany.NameOfPlace = company.NameOfPlace;
             existCompany.CompanyId = company.CompanyId;
 
             await companyService.ModifyCompanyAsync(existCompany);
