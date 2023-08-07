@@ -27,7 +27,7 @@ namespace ProductManagement.MVC.Services.OrderService
             {
                 return await returningOrderFunction();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw new NotImplementedException();
             }
@@ -39,7 +39,7 @@ namespace ProductManagement.MVC.Services.OrderService
             {
                 return returningOrdersFunction();
             }
-            catch (SqlException sqlException)
+            catch (SqlException)
             {
                 throw new NotImplementedException();
             }

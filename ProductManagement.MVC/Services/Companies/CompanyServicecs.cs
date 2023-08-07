@@ -25,7 +25,7 @@ namespace ProductManagement.MVC.Services.Companies
             {
                 return await returningCompanyFunction();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw new NotImplementedException();
             }
@@ -37,7 +37,7 @@ namespace ProductManagement.MVC.Services.Companies
             {
                 return returningCompaniesFunction();
             }
-            catch (SqlException sqlException)
+            catch (SqlException)
             {
                 throw new NotImplementedException();
             }
