@@ -20,7 +20,7 @@ namespace ProductManagement.MVC.Controllers
         //GET: Companies
         public IActionResult Index()
         {
-            var company = companyService.RetrieveAllCompanys();
+            var company = companyService.RetrieveAllCompanies();
             return View(company);
         }
 

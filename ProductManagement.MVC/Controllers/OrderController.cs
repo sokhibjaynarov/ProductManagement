@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System;
 using ProductManagement.MVC.Models;
 using ProductManagement.MVC.ViewModels.Order;
+using System.Linq;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace ProductManagement.MVC.Controllers
 {
@@ -39,16 +41,16 @@ namespace ProductManagement.MVC.Controllers
             var orderViewModel = new OrderViewModel()
             {
                 OrderId = order.OrderId,
-                NameOfPlace = company.NameOfPlace,
                 TypeOfProduct = order.TypeOfProduct,
-                Deadline = order.Deadline,
-                CreateDate = order.CreateDate,
-                Comment = order.Comment,
-                CompanyName = company.CompanyName,
                 Height = order.Height,
                 High = order.High,
+                Width = order.Width,
                 Status = order.Status,
-                Width = order.Width
+                NameOfPlace = company.NameOfPlace,
+                CompanyName = company.CompanyName,
+                CreateDate = order.CreateDate,
+                Deadline = order.Deadline,
+                Comment = order.Comment,
             };
 
             return View(orderViewModel);
@@ -57,12 +59,30 @@ namespace ProductManagement.MVC.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            var companies = companyService.RetrieveAllCompanies().ToList();
+            var viewModel = new OrderForCreateViewModel()
+            {
+                Companies = companies.Select(company => new CompanyListViewModel { CompanyName = company.CompanyName, CompanyId = company.CompanyId }).ToList()
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(Order order)
+        public async Task<ActionResult> Create(OrderForCreateViewModel viewModel)
         {
+            var order = new Order()
+            {
+                TypeOfProduct = viewModel.TypeOfProduct,
+                Height = viewModel.Height,
+                High = viewModel.High,
+                Width = viewModel.Width,
+                Status = Enums.OrderStatus.Ordered,
+                CreateDate = DateTime.UtcNow,
+                Deadline = viewModel.Deadline,
+                Comment = viewModel.Comment,
+                CompanyId = viewModel.CompanyId,
+            };
+
             await orderService.AddOrderAsync(order);
             ViewBag.Message = "Data Insert Successfully";
             return RedirectToAction("Index");

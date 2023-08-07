@@ -68,7 +68,7 @@ namespace ProductManagement.MVC.Services.Companies
             });
 
 
-        public IQueryable<Company> RetrieveAllCompanys() =>
+        public IQueryable<Company> RetrieveAllCompanies() =>
             TryCatch(() =>
                  this.storageBroker.SelectAllCompanys());
 

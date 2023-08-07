@@ -1,4 +1,4 @@
-﻿@model ProductManagement.MVC.Models.Order
+﻿@model ProductManagement.MVC.ViewModels.Order.OrderViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -18,11 +18,59 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.TypeOfProduct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TypeOfProduct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Height)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Height)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.High)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.High)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Width)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Width)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Status)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfPlace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameOfPlace)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName)
         </dd>
 
         <dt>
@@ -39,6 +87,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.Deadline)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment)
         </dd>
 
     </dl>

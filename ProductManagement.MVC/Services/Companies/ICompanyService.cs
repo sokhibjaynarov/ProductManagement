@@ -9,7 +9,7 @@ namespace ProductManagement.MVC.Services.Companies
     {
         ValueTask<Company> AddCompanyAsync(Company Company);
 
-        IQueryable<Company> RetrieveAllCompanys();
+        IQueryable<Company> RetrieveAllCompanies();
 
         ValueTask<Company> RetrieveCompanyByIdAsync(Guid CompanyId);
 
