@@ -38,10 +38,20 @@ namespace ProductManagement.MVC.Controllers
 
             var orderViewModel = new OrderViewModel()
             {
+                OrderId = order.OrderId,
+                NameOfPlace = company.NameOfPlace,
+                TypeOfProduct = order.TypeOfProduct,
+                Deadline = order.Deadline,
+                CreateDate = order.CreateDate,
+                Comment = order.Comment,
+                CompanyName = company.CompanyName,
+                Height = order.Height,
+                High = order.High,
+                Status = order.Status,
+                Width = order.Width
+            };
 
-            }
-
-            return View(order);
+            return View(orderViewModel);
         }
 
         [HttpGet]
