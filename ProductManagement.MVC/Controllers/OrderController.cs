@@ -5,6 +5,7 @@ using ProductManagement.MVC.Services.Orders;
 using System.Threading.Tasks;
 using System;
 using ProductManagement.MVC.Models;
+using ProductManagement.MVC.ViewModels.Order;
 
 namespace ProductManagement.MVC.Controllers
 {
@@ -32,6 +33,13 @@ namespace ProductManagement.MVC.Controllers
         public async Task<ActionResult> Details(Guid Id)
         {
             var order = await orderService.RetrieveOrderByIdAsync(Id);
+
+            var company = await companyService.RetrieveCompanyByIdAsync(order.CompanyId);
+
+            var orderViewModel = new OrderViewModel()
+            {
+
+            }
 
             return View(order);
         }
