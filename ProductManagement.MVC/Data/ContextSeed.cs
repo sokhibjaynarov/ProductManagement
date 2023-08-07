@@ -17,28 +17,85 @@ namespace ProductManagement.MVC.Data
         }
         public static async Task SeedSuperAdminAsync(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
         {
-            //Seed Default User
-            var defaultUser = new ApplicationUser
+            //Seed Users
+            var superAdmin = new ApplicationUser
             {
                 UserName = "superadmin",
                 Email = "superadmin@gmail.com",
-                FirstName = "Mukesh",
-                LastName = "Murugan",
+                FirstName = "Sokhib",
+                LastName = "Jaynarov",
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true
             };
-            if (userManager.Users.All(u => u.Id != defaultUser.Id))
+
+            var admin = new ApplicationUser
             {
-                var user = await userManager.FindByEmailAsync(defaultUser.Email);
+                UserName = "admin",
+                Email = "admin@gmail.com",
+                FirstName = "Khusan",
+                LastName = "Rakhmatullayev",
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = true
+            };
+
+            var manager = new ApplicationUser
+            {
+                UserName = "manager",
+                Email = "manager@gmail.com",
+                FirstName = "Sardor",
+                LastName = "Tuymurodov",
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = true
+            };
+
+            var worker = new ApplicationUser
+            {
+                UserName = "worker",
+                Email = "worker@gmail.com",
+                FirstName = "Abduvali",
+                LastName = "Abdujalilov",
+                EmailConfirmed = true,
+                PhoneNumberConfirmed = true
+            };
+
+            if (userManager.Users.All(u => u.Id != superAdmin.Id))
+            {
+                var user = await userManager.FindByEmailAsync(superAdmin.Email);
                 if (user == null)
                 {
-                    await userManager.CreateAsync(defaultUser, "123Pa$$word.");
-                    await userManager.AddToRoleAsync(defaultUser, Enums.Roles.Worker.ToString());
-                    await userManager.AddToRoleAsync(defaultUser, Enums.Roles.Manager.ToString());
-                    await userManager.AddToRoleAsync(defaultUser, Enums.Roles.Admin.ToString());
-                    await userManager.AddToRoleAsync(defaultUser, Enums.Roles.SuperAdmin.ToString());
+                    await userManager.CreateAsync(superAdmin, "123Pa$$word.");
+                    await userManager.AddToRoleAsync(superAdmin, Enums.Roles.SuperAdmin.ToString());
                 }
+            }
 
+            if (userManager.Users.All(u => u.Id != admin.Id))
+            {
+                var user = await userManager.FindByEmailAsync(admin.Email);
+                if (user == null)
+                {
+                    await userManager.CreateAsync(admin, "123Pa$$word.");
+                    await userManager.AddToRoleAsync(admin, Enums.Roles.Admin.ToString());
+                }
+            }
+
+            if (userManager.Users.All(u => u.Id != manager.Id))
+            {
+                var user = await userManager.FindByEmailAsync(manager.Email);
+                if (user == null)
+                {
+                    await userManager.CreateAsync(manager, "123Pa$$word.");
+                    await userManager.AddToRoleAsync(manager, Enums.Roles.Manager.ToString());
+                }
+            }
+
+            if (userManager.Users.All(u => u.Id != worker.Id))
+            {
+                var user = await userManager.FindByEmailAsync(worker.Email);
+                if (user == null)
+                {
+                    await userManager.CreateAsync(worker, "123Pa$$word.");
+                    await userManager.AddToRoleAsync(worker, Enums.Roles.Worker.ToString());
+                }
             }
         }
     }
