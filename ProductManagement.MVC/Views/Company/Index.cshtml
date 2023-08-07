@@ -1,6 +1,53 @@
-﻿namespace ProductManagement.MVC.Views.Company
-{
-    public class Index
-    {
-    }
+﻿@model IEnumerable<ProductManagement.MVC.Models.Company>
+
+@{
+    ViewData["Title"] = "Company";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.INN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameOfPlace)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.INN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameOfPlace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.CompanyId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.CompanyId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CompanyId})
+            </td>
+        </tr>
+    }
+
+</table>

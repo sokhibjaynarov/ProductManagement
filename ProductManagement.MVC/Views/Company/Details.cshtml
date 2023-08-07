@@ -1,6 +1,57 @@
-﻿namespace ProductManagement.MVC.Views.Company
-{
-    public class Details
-    {
-    }
+﻿@model ProductManagement.MVC.Models.Company
+
+@{
+    ViewBag.Title = "Details";
 }
+
+<div>Details</div>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CompanyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.INN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.INN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameOfPlace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameOfPlace)
+        </dd>
+
+       @* <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>*@
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CompanyId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
