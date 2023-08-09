@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProductManagement.MVC.Models.Order>
+﻿@model IEnumerable<ProductManagement.MVC.ViewModels.Order.OrderViewModel>
 
 @{
     ViewData["Title"] = "Order";
@@ -13,13 +13,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.OrderId)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Status)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.TypeOfProduct)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameOfPlace)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deadline)
+        </th>
+        <th>
+            Actions
         </th>
         <th></th>
     </tr>
@@ -28,13 +40,22 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.OrderId)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.TypeOfProduct)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameOfPlace)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Deadline)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) |

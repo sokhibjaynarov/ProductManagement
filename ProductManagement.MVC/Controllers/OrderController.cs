@@ -8,6 +8,7 @@ using ProductManagement.MVC.Models;
 using ProductManagement.MVC.ViewModels.Order;
 using System.Linq;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System.Collections.Generic;
 
 namespace ProductManagement.MVC.Controllers
 {
@@ -27,8 +28,31 @@ namespace ProductManagement.MVC.Controllers
         // GET: Orders 
         public IActionResult Index()
         {
-            var orders = orderService.RetrieveAllOrders();
-            return View(orders);
+            var orders = orderService.RetrieveAllOrders().ToList();
+
+            var companies = companyService.RetrieveAllCompanies()
+                .Where(company => orders.Select(order => order.CompanyId).Contains(company.CompanyId)).ToList();
+            var ordersViewModel = new List<OrderViewModel>();
+            foreach(Order order in orders)
+            {
+                var company = companies.FirstOrDefault(company => company.CompanyId == order.CompanyId);
+                ordersViewModel.Add(new OrderViewModel()
+                {
+                    OrderId = order.OrderId,
+                    TypeOfProduct = order.TypeOfProduct,
+                    Height = order.Height,
+                    High = order.High,
+                    Width = order.Width,
+                    Status = order.Status,
+                    NameOfPlace = company.NameOfPlace,
+                    CompanyName = company.CompanyName,
+                    CreateDate = order.CreateDate,
+                    Deadline = order.Deadline,
+                    Comment = order.Comment,
+                });
+            };
+
+            return View(ordersViewModel);
         }
 
         // GET: For details order
