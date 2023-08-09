@@ -1,42 +1,23 @@
 ﻿using ProductManagement.MVC.Enums;
 using System;
-using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace ProductManagement.MVC.ViewModels.Order
 {
-    public class OrderViewModel
+    public class OrderForEditViewModel
     {
-        [DisplayName("Buyurtma raqami")]
         public Guid OrderId { get; set; }
-
-        [DisplayName("Kompaniya nomi")]
+        public List<CompanyListViewModel> Companies { get; set; }
+        public Guid CompanyId { get; set; }
         public string CompanyName { get; set; }
-
-        [DisplayName("Obyekt nomi")]
         public string NameOfPlace { get; set; }
-
-        [DisplayName("Status")]
         public OrderStatus Status { get; set; }
-
-        [DisplayName("Mahsulot turi")]
         public string TypeOfProduct { get; set; }
-
-        [DisplayName("Bo'yi")]
         public int High { get; set; }
-
-        [DisplayName("Eni")]
         public int Width { get; set; }
-
-        [DisplayName("Balandligi")]
         public int Height { get; set; }
-
-        [DisplayName("Izoh")]
         public string Comment { get; set; }
-
-        [DisplayName("Tugash muddati")]
         public DateTime Deadline { get; set; }
-
-        [DisplayName("Yaratilgan vaqti")]
         public DateTime CreateDate { get; set; }
     }
 }

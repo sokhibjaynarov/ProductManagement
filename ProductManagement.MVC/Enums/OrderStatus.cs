@@ -3,6 +3,8 @@
     public enum OrderStatus
     {
         Ordered,
-        Sent
+        ReOrdered,
+        Canceled,
+        Completed
     }
 }

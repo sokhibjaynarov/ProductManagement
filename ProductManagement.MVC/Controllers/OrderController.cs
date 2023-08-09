@@ -36,20 +36,23 @@ namespace ProductManagement.MVC.Controllers
             foreach(Order order in orders)
             {
                 var company = companies.FirstOrDefault(company => company.CompanyId == order.CompanyId);
-                ordersViewModel.Add(new OrderViewModel()
+                if (company != null)
                 {
-                    OrderId = order.OrderId,
-                    TypeOfProduct = order.TypeOfProduct,
-                    Height = order.Height,
-                    High = order.High,
-                    Width = order.Width,
-                    Status = order.Status,
-                    NameOfPlace = company.NameOfPlace,
-                    CompanyName = company.CompanyName,
-                    CreateDate = order.CreateDate,
-                    Deadline = order.Deadline,
-                    Comment = order.Comment,
-                });
+                    ordersViewModel.Add(new OrderViewModel()
+                    {
+                        OrderId = order.OrderId,
+                        TypeOfProduct = order.TypeOfProduct,
+                        Height = order.Height,
+                        High = order.High,
+                        Width = order.Width,
+                        Status = order.Status,
+                        NameOfPlace = company.NameOfPlace,
+                        CompanyName = company.CompanyName,
+                        CreateDate = order.CreateDate,
+                        Deadline = order.Deadline,
+                        Comment = order.Comment,
+                    });
+                }
             };
 
             return View(ordersViewModel);
@@ -117,7 +120,27 @@ namespace ProductManagement.MVC.Controllers
         {
             var order = await orderService.RetrieveOrderByIdAsync(Id);
 
-            return View(order);
+            var company = await companyService.RetrieveCompanyByIdAsync(order.CompanyId);
+            var companies = companyService.RetrieveAllCompanies().ToList();
+
+            var orderViewModel = new OrderForEditViewModel()
+            {
+                OrderId = order.OrderId,
+                TypeOfProduct = order.TypeOfProduct,
+                Height = order.Height,
+                High = order.High,
+                Width = order.Width,
+                Status = order.Status,
+                NameOfPlace = company.NameOfPlace,
+                CompanyName = company.CompanyName,
+                CreateDate = order.CreateDate,
+                Deadline = order.Deadline,
+                Comment = order.Comment,
+                CompanyId = company.CompanyId,
+                Companies = companies.Select(company => new CompanyListViewModel { CompanyName = company.CompanyName, CompanyId = company.CompanyId }).ToList()
+            };
+
+            return View(orderViewModel);
         }
 
         [HttpPost]

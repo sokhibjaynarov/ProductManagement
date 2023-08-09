@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Orders</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -58,7 +58,14 @@
                 @Html.DisplayFor(modelItem => item.Deadline)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) |
+                @if ((User.IsInRole("SuperAdmin") || User.IsInRole("Manager")) && item.Status != ProductManagement.MVC.Enums.OrderStatus.Completed)
+                {
+                    <a href='@Url.ActionLink("Edit", "Order", new { id = item.OrderId })'> Edit | </a>
+                }
+                else if (User.IsInRole("SuperAdmin") || User.IsInRole("Worker"))
+                {
+                    <a href='@Url.ActionLink("Edit", "Order", new { id = item.OrderId })'> Edit | </a>
+                }
                 @Html.ActionLink("Details", "Details", new { id = item.OrderId  }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.OrderId })
             </td>
