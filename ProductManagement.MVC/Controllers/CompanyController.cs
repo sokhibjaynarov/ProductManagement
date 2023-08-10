@@ -49,7 +49,7 @@ namespace ProductManagement.MVC.Controllers
             var company = await companyService.RetrieveCompanyByIdAsync(id);
             var companies = companyService.RetrieveAllCompanies().ToList();
 
-            var companyViewModel = new CompanyViewModel()
+            var companyForEditViewModel = new CompanyForEditViewModel()
             {
                 CompanyId = company.CompanyId,
                 CompanyName = company.CompanyName,
@@ -57,7 +57,7 @@ namespace ProductManagement.MVC.Controllers
                 INN = company.INN,
                 NameOfPlace = company.NameOfPlace,
             };
-            return View(companyViewModel);
+            return View(companyForEditViewModel);
         }
 
         [HttpPost]
