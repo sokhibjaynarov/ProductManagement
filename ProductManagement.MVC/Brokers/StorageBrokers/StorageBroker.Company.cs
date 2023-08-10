@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using ProductManagement.MVC.Models;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using ProductManagement.MVC.Models;
 
 namespace ProductManagement.MVC.Brokers.StorageBrokers
 {

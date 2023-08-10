@@ -1,5 +1,4 @@
 ﻿using ProductManagement.MVC.Enums;
-using System.Collections.Generic;
 using System;
 
 namespace ProductManagement.MVC.ViewModels.Order

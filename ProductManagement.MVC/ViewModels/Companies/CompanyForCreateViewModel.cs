@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ProductManagement.MVC.ViewModels.Companies
+﻿namespace ProductManagement.MVC.ViewModels.Companies
 {
     public class CompanyForCreateViewModel
     {

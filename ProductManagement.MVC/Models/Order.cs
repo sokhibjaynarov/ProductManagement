@@ -1,18 +1,18 @@
-﻿using System;
+﻿using ProductManagement.MVC.Enums;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using ProductManagement.MVC.Enums;
 
 namespace ProductManagement.MVC.Models
 {
     public class Order
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid OrderId { get; set; } 
+        public Guid OrderId { get; set; }
 
         public OrderStatus Status { get; set; }
 
-      //  public string TypeOfProduct { get; set; }
+        //  public string TypeOfProduct { get; set; }
 
         public decimal VolumeProduct { get; set; }
 

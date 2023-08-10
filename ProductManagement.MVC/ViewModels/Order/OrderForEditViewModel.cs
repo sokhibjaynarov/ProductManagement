@@ -12,7 +12,7 @@ namespace ProductManagement.MVC.ViewModels.Order
         public string CompanyName { get; set; }
         public string NameOfPlace { get; set; }
         public OrderStatus Status { get; set; }
-       // public string TypeOfProduct { get; set; }
+        // public string TypeOfProduct { get; set; }
         public decimal VolumeProduct { get; set; }
         public int High { get; set; }
         public int Width { get; set; }

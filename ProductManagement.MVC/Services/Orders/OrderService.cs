@@ -1,17 +1,17 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using ProductManagement.MVC.Brokers.StorageBrokers;
 using ProductManagement.MVC.Models;
 using ProductManagement.MVC.Services.Orders;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ProductManagement.MVC.Services.OrderService
 {
     public class OrderService : IOrderService
     {
 
-        
+
         private readonly IStorageBroker storageBroker;
 
         public OrderService(IStorageBroker storageBroker)
@@ -70,7 +70,7 @@ namespace ProductManagement.MVC.Services.OrderService
             });
 
 
-        public  ValueTask<Order> RemoveOrderByIdAsync(Guid orderId) =>
+        public ValueTask<Order> RemoveOrderByIdAsync(Guid orderId) =>
             TryCatch(async () =>
             {
                 Order maybeOrder =
@@ -82,11 +82,11 @@ namespace ProductManagement.MVC.Services.OrderService
 
             TryCatch(async () =>
             {
-               // Order maybeOrder =
-                 return await this.storageBroker.SelectOrderByIdAsync(orderId);
+                // Order maybeOrder =
+                return await this.storageBroker.SelectOrderByIdAsync(orderId);
 
-               // return maybeOrder; 
+                // return maybeOrder; 
             });
-        
+
     }
 }

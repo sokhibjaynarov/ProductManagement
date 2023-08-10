@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProductManagement.MVC.Brokers.StorageBrokers
 {
-    public partial class StorageBroker: IdentityDbContext<ApplicationUser, ApplicationRole, Guid>, IStorageBroker
+    public partial class StorageBroker : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>, IStorageBroker
     {
         private readonly IConfiguration configuration;
 

@@ -1,16 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ProductManagement.MVC.Brokers.UserManagement;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using ProductManagement.MVC.Enums;
+using ProductManagement.MVC.Models;
 using ProductManagement.MVC.Services.Companies;
 using ProductManagement.MVC.Services.Orders;
-using System.Threading.Tasks;
-using System;
-using ProductManagement.MVC.Models;
 using ProductManagement.MVC.ViewModels.Order;
-using System.Linq;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System;
 using System.Collections.Generic;
-using ProductManagement.MVC.Enums;
-using Microsoft.AspNetCore.Authorization;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ProductManagement.MVC.Controllers
 {
@@ -20,7 +18,7 @@ namespace ProductManagement.MVC.Controllers
         private readonly ICompanyService companyService;
 
         public OrderController(
-            IOrderService orderService, 
+            IOrderService orderService,
             ICompanyService companyService)
         {
             this.orderService = orderService;
@@ -36,7 +34,7 @@ namespace ProductManagement.MVC.Controllers
             var companies = companyService.RetrieveAllCompanies()
                 .Where(company => orders.Select(order => order.CompanyId).Contains(company.CompanyId)).ToList();
             var ordersViewModel = new List<OrderViewModel>();
-            foreach(Order order in orders)
+            foreach (Order order in orders)
             {
                 var company = companies.FirstOrDefault(company => company.CompanyId == order.CompanyId);
                 if (company != null)
@@ -44,7 +42,7 @@ namespace ProductManagement.MVC.Controllers
                     ordersViewModel.Add(new OrderViewModel()
                     {
                         OrderId = order.OrderId,
-                     //   TypeOfProduct = order.TypeOfProduct,
+                        //   TypeOfProduct = order.TypeOfProduct,
                         VolumeProduct = order.VolumeProduct,
                         Height = order.Height,
                         High = order.High,

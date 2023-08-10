@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProductManagement.MVC.Models;
 using ProductManagement.MVC.Services.Companies;
 using ProductManagement.MVC.ViewModels.Companies;
-using ProductManagement.MVC.ViewModels.Order;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ProductManagement.MVC.Controllers
 {
@@ -69,11 +68,11 @@ namespace ProductManagement.MVC.Controllers
         {
             var existCompany = await companyService.RetrieveCompanyByIdAsync(company.CompanyId);
 
-           /* existCompany.CompanyName = company.CompanyName;
-            existCompany.INN = company.INN;
-            existCompany.Address = company.Address;
-            existCompany.NameOfPlace = company.NameOfPlace;
-            existCompany.CompanyId = company.CompanyId;*/ 
+            /* existCompany.CompanyName = company.CompanyName;
+             existCompany.INN = company.INN;
+             existCompany.Address = company.Address;
+             existCompany.NameOfPlace = company.NameOfPlace;
+             existCompany.CompanyId = company.CompanyId;*/
 
             await companyService.ModifyCompanyAsync(existCompany);
             return RedirectToAction("Index");
@@ -100,7 +99,7 @@ namespace ProductManagement.MVC.Controllers
         [Authorize(Roles = "SuperAdmin, Manager")]
         public ActionResult Create()
         {
-            
+
             return View();
         }
 
@@ -109,17 +108,17 @@ namespace ProductManagement.MVC.Controllers
         public async Task<ActionResult> Create(CompanyForCreateViewModel companyForCreateViewModel)
 
         {
-           var company = new Company()
-           {
-               CompanyName = companyForCreateViewModel.CompanyName,
-               Address = companyForCreateViewModel.Address,
-               INN= companyForCreateViewModel.INN,
-               NameOfPlace= companyForCreateViewModel.NameOfPlace,
-           };
+            var company = new Company()
+            {
+                CompanyName = companyForCreateViewModel.CompanyName,
+                Address = companyForCreateViewModel.Address,
+                INN = companyForCreateViewModel.INN,
+                NameOfPlace = companyForCreateViewModel.NameOfPlace,
+            };
 
             await companyService.AddCompanyAsync(company);
 
-            
+
 
             ViewBag.Message = "Data Added Seccessfully";
 

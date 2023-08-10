@@ -1,10 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using ProductManagement.MVC.Brokers.StorageBrokers;
 using ProductManagement.MVC.Models;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ProductManagement.MVC.Services.Companies
 {
@@ -79,6 +78,6 @@ namespace ProductManagement.MVC.Services.Companies
                     await storageBroker.SelectCompanyByIdAsync(companyId);
                 return maybeCompany;
             });
-        
+
     }
 }

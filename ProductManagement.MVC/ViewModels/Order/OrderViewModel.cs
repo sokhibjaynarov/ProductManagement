@@ -18,8 +18,8 @@ namespace ProductManagement.MVC.ViewModels.Order
         [DisplayName("Status")]
         public OrderStatus Status { get; set; }
 
-       /* [DisplayName("Mahsulot turi")]
-        public string TypeOfProduct { get; set; }*/
+        /* [DisplayName("Mahsulot turi")]
+         public string TypeOfProduct { get; set; }*/
 
         [DisplayName("Mahsulot hajmi")]
         public decimal VolumeProduct { get; set; }
