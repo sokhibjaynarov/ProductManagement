@@ -1,13 +1,15 @@
-﻿@model ProductManagement.MVC.ViewModels.Order.OrderViewModel
-
+﻿@model ProductManagement.MVC.ViewModels.Order.OrderForEditViewModel
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div>Order Details</div>
+<h2>Edit</h2>
 
-<div>
-    <hr />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.OrderId)
@@ -97,16 +99,27 @@
             @Html.DisplayFor(model => model.Comment)
         </dd>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.CompanyName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                <select id="drpEmpList" class="form-control" asp-for="CompanyId" asp-items="@(new SelectList(Model.Companies, "CompanyId", "CompanyName"))">
+                    <option class="form-control" value="">--Select--</option>
+                </select>
+                <input type="hidden" asp-for="CompanyId">
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Comment, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
     </dl>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
 </div>
-<p>
-    @if ((User.IsInRole("SuperAdmin1") || User.IsInRole("Manager")) && Model.Status != ProductManagement.MVC.Enums.OrderStatus.Completed)
-    {
-        <a class="btn btn-primary" href='@Url.ActionLink("Edit", "Order", new { id = Model.OrderId })'> Edit </a>
-    }
-    else if (User.IsInRole("SuperAdmin") || User.IsInRole("Worker"))
-    {
-        <a class="btn btn-primary" href='@Url.ActionLink("EditStatus", "Order", new { id = Model.OrderId })'> Edit </a>
-    }
-    <a class="btn btn-primary" href='@Url.ActionLink("Index", "Order", new { id = Model.OrderId })'> Back to List </a>
-</p> 

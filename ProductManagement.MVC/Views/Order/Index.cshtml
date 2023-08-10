@@ -58,13 +58,13 @@
                 @Html.DisplayFor(modelItem => item.Deadline)
             </td>
             <td>
-                @if ((User.IsInRole("SuperAdmin") || User.IsInRole("Manager")) && item.Status != ProductManagement.MVC.Enums.OrderStatus.Completed)
+                @if ((User.IsInRole("SuperAdmin1") || User.IsInRole("Manager")) && item.Status != ProductManagement.MVC.Enums.OrderStatus.Completed)
                 {
                     <a href='@Url.ActionLink("Edit", "Order", new { id = item.OrderId })'> Edit | </a>
                 }
                 else if (User.IsInRole("SuperAdmin") || User.IsInRole("Worker"))
                 {
-                    <a href='@Url.ActionLink("Edit", "Order", new { id = item.OrderId })'> Edit | </a>
+                    <a href='@Url.ActionLink("EditStatus", "Order", new { id = item.OrderId })'> Edit | </a>
                 }
                 @Html.ActionLink("Details", "Details", new { id = item.OrderId  }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.OrderId })

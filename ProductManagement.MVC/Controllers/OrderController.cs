@@ -153,5 +153,44 @@ namespace ProductManagement.MVC.Controllers
 
             return RedirectToAction("Index");
         }
+
+        // GET: For edit user
+        public async Task<ActionResult> EditStatus(Guid Id)
+        {
+            var order = await orderService.RetrieveOrderByIdAsync(Id);
+
+            var company = await companyService.RetrieveCompanyByIdAsync(order.CompanyId);
+            var companies = companyService.RetrieveAllCompanies().ToList();
+
+            var orderViewModel = new OrderForEditViewModel()
+            {
+                OrderId = order.OrderId,
+                TypeOfProduct = order.TypeOfProduct,
+                Height = order.Height,
+                High = order.High,
+                Width = order.Width,
+                Status = order.Status,
+                NameOfPlace = company.NameOfPlace,
+                CompanyName = company.CompanyName,
+                CreateDate = order.CreateDate,
+                Deadline = order.Deadline,
+                Comment = order.Comment,
+                CompanyId = company.CompanyId,
+                Companies = companies.Select(company => new CompanyListViewModel { CompanyName = company.CompanyName, CompanyId = company.CompanyId }).ToList()
+            };
+
+            return View(orderViewModel);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> EditStatus(Order order)
+        {
+            var existOrder = await orderService.RetrieveOrderByIdAsync(order.OrderId);
+
+
+            await orderService.ModifyOrderAsync(existOrder);
+
+            return RedirectToAction("Index");
+        }
     }
 }
