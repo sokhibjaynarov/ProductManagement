@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProductManagement.MVC.Models.Company>
+﻿@model IEnumerable<ProductManagement.MVC.ViewModels.Companies.CompanyViewModel>
 
 @{
     ViewData["Title"] = "Company";
@@ -43,9 +43,17 @@
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.CompanyId }) |
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.CompanyId }) |
                 @Html.ActionLink("Details", "Details", new { id=item.CompanyId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.CompanyId})
+                @Html.ActionLink("Delete", "Delete", new { id = item.CompanyId})*@
+
+                @if ((User.IsInRole("SuperAdmin1") || User.IsInRole("Manager") || User.IsInRole("SuperAdmin")))
+                {
+                    <a href='@Url.ActionLink("Edit", "Company", new { id = item.CompanyId })'> Edit | </a>
+                }              
+                @Html.ActionLink("Details", "Details", new { id = item.CompanyId  }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.CompanyId })
+
             </td>
         </tr>
     }
