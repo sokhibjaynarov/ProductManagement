@@ -218,5 +218,14 @@ namespace ProductManagement.MVC.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [Authorize(Roles = "SuperAdmin")]
+        public async Task<ActionResult> Delete(Guid Id)
+        {
+            await orderService.RemoveOrderByIdAsync(Id);
+
+            ViewBag.Message = "Company Delete Successfully";
+            return RedirectToAction("Index");
+        }
     }
 }
