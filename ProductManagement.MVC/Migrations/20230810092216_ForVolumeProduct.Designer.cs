@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProductManagement.MVC.Brokers.StorageBrokers;
 
@@ -11,9 +12,10 @@ using ProductManagement.MVC.Brokers.StorageBrokers;
 namespace ProductManagement.MVC.Migrations
 {
     [DbContext(typeof(StorageBroker))]
-    partial class StorageBrokerModelSnapshot : ModelSnapshot
+    [Migration("20230810092216_ForVolumeProduct")]
+    partial class ForVolumeProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -282,7 +284,10 @@ namespace ProductManagement.MVC.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("VolumeProduct")
+                    b.Property<string>("TypeOfProduct")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("VolumeOfProduct")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("Width")

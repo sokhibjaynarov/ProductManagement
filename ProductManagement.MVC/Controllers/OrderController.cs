@@ -41,7 +41,8 @@ namespace ProductManagement.MVC.Controllers
                     ordersViewModel.Add(new OrderViewModel()
                     {
                         OrderId = order.OrderId,
-                        TypeOfProduct = order.TypeOfProduct,
+                     //   TypeOfProduct = order.TypeOfProduct,
+                        VolumeProduct = order.VolumeProduct,
                         Height = order.Height,
                         High = order.High,
                         Width = order.Width,
@@ -68,7 +69,8 @@ namespace ProductManagement.MVC.Controllers
             var orderViewModel = new OrderViewModel()
             {
                 OrderId = order.OrderId,
-                TypeOfProduct = order.TypeOfProduct,
+                //   TypeOfProduct = order.TypeOfProduct,
+                VolumeProduct = order.VolumeProduct,
                 Height = order.Height,
                 High = order.High,
                 Width = order.Width,
@@ -99,7 +101,8 @@ namespace ProductManagement.MVC.Controllers
         {
             var order = new Order()
             {
-                TypeOfProduct = viewModel.TypeOfProduct,
+                // TypeOfProduct = viewModel.TypeOfProduct,
+                VolumeProduct = viewModel.VolumeProduct,
                 Height = viewModel.Height,
                 High = viewModel.High,
                 Width = viewModel.Width,
@@ -126,7 +129,8 @@ namespace ProductManagement.MVC.Controllers
             var orderViewModel = new OrderForEditViewModel()
             {
                 OrderId = order.OrderId,
-                TypeOfProduct = order.TypeOfProduct,
+                // TypeOfProduct = order.TypeOfProduct,
+                VolumeProduct = order.VolumeProduct,
                 Height = order.Height,
                 High = order.High,
                 Width = order.Width,
@@ -165,7 +169,8 @@ namespace ProductManagement.MVC.Controllers
             var orderViewModel = new OrderForEditViewModel()
             {
                 OrderId = order.OrderId,
-                TypeOfProduct = order.TypeOfProduct,
+                // TypeOfProduct = order.TypeOfProduct,
+                VolumeProduct = order.VolumeProduct,
                 Height = order.Height,
                 High = order.High,
                 Width = order.Width,

@@ -5,7 +5,8 @@ namespace ProductManagement.MVC.ViewModels.Order
 {
     public class OrderForCreateViewModel
     {
-        public string TypeOfProduct { get; set; }
+        // public string TypeOfProduct { get; set; }
+        public decimal VolumeProduct { get; set; }
         public int High { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }

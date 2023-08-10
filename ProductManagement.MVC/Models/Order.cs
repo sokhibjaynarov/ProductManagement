@@ -12,7 +12,9 @@ namespace ProductManagement.MVC.Models
 
         public OrderStatus Status { get; set; }
 
-        public string TypeOfProduct { get; set; }
+      //  public string TypeOfProduct { get; set; }
+
+        public decimal VolumeProduct { get; set; }
 
         public int High { get; set; }
 
