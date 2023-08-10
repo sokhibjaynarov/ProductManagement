@@ -66,7 +66,7 @@ namespace ProductManagement.MVC.Services.OrderService
             {
                 Order maybeOrder =
                    await storageBroker.SelectOrderByIdAsync(order.OrderId);
-                return await this.storageBroker.UpdateOrderAsync(maybeOrder);
+                return await this.storageBroker.UpdateOrderAsync(order);
             });
 
 

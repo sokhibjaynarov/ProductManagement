@@ -9,6 +9,7 @@ using ProductManagement.MVC.ViewModels.Order;
 using System.Linq;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Collections.Generic;
+using ProductManagement.MVC.Enums;
 
 namespace ProductManagement.MVC.Controllers
 {
@@ -152,6 +153,13 @@ namespace ProductManagement.MVC.Controllers
         {
             var existOrder = await orderService.RetrieveOrderByIdAsync(order.OrderId);
 
+            existOrder.VolumeProduct = order.VolumeProduct;
+            existOrder.Height = order.Height;
+            existOrder.Width = order.Width;
+            existOrder.High = order.High;
+            existOrder.CompanyId = order.CompanyId;
+            existOrder.Comment = order.Comment;
+            existOrder.Deadline = order.Deadline;
 
             await orderService.ModifyOrderAsync(existOrder);
 
@@ -166,10 +174,9 @@ namespace ProductManagement.MVC.Controllers
             var company = await companyService.RetrieveCompanyByIdAsync(order.CompanyId);
             var companies = companyService.RetrieveAllCompanies().ToList();
 
-            var orderViewModel = new OrderForEditViewModel()
+            var orderViewModel = new OrderForEditStatusViewModel()
             {
                 OrderId = order.OrderId,
-                // TypeOfProduct = order.TypeOfProduct,
                 VolumeProduct = order.VolumeProduct,
                 Height = order.Height,
                 High = order.High,
@@ -180,18 +187,23 @@ namespace ProductManagement.MVC.Controllers
                 CreateDate = order.CreateDate,
                 Deadline = order.Deadline,
                 Comment = order.Comment,
-                CompanyId = company.CompanyId,
-                Companies = companies.Select(company => new CompanyListViewModel { CompanyName = company.CompanyName, CompanyId = company.CompanyId }).ToList()
+                IsOrderCompleted = order.Status == OrderStatus.Completed,
             };
 
             return View(orderViewModel);
         }
 
         [HttpPost]
-        public async Task<ActionResult> EditStatus(Order order)
+        public async Task<ActionResult> EditStatus(OrderForEditStatusViewModel order)
         {
             var existOrder = await orderService.RetrieveOrderByIdAsync(order.OrderId);
 
+            if (order.IsOrderCompleted && existOrder.Status != OrderStatus.Completed)
+            {
+                existOrder.Status = OrderStatus.Completed;
+            }
+
+            existOrder.Comment = order.Comment;
 
             await orderService.ModifyOrderAsync(existOrder);
 
