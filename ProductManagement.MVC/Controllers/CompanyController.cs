@@ -99,16 +99,15 @@ namespace ProductManagement.MVC.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create(CompanyViewModel companyViewModel)
+        public async Task<ActionResult> Create(CompanyForCreateViewModel companyForCreateViewModel)
 
         {
            var company = new Company()
            {
-               CompanyId = companyViewModel.CompanyId,
-               CompanyName = companyViewModel.CompanyName,
-               Address = companyViewModel.Address,
-               INN= companyViewModel.INN,
-               NameOfPlace= companyViewModel.NameOfPlace,
+               CompanyName = companyForCreateViewModel.CompanyName,
+               Address = companyForCreateViewModel.Address,
+               INN= companyForCreateViewModel.INN,
+               NameOfPlace= companyForCreateViewModel.NameOfPlace,
            };
 
             await companyService.AddCompanyAsync(company);
