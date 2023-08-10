@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProductManagement.MVC.Models;
 using ProductManagement.MVC.Services.Companies;
@@ -21,6 +22,7 @@ namespace ProductManagement.MVC.Controllers
         }
 
         //GET: Companies
+        [Authorize(Roles = "SuperAdmin, Admin, Manager, Worker")]
         public IActionResult Index()
         {
 
@@ -44,6 +46,7 @@ namespace ProductManagement.MVC.Controllers
         }
 
         //GET for edit Company
+        [Authorize(Roles = "SuperAdmin, Manager")]
         public async Task<ActionResult> Edit(Guid id)
         {
             var company = await companyService.RetrieveCompanyByIdAsync(id);
@@ -61,6 +64,7 @@ namespace ProductManagement.MVC.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "SuperAdmin, Manager")]
         public async Task<ActionResult> Edit(Company company)
         {
             var existCompany = await companyService.RetrieveCompanyByIdAsync(company.CompanyId);
@@ -75,6 +79,7 @@ namespace ProductManagement.MVC.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "SuperAdmin, Admin, Manager, Worker")]
         public async Task<ActionResult> Details(Guid Id)
         {
             var company = await companyService.RetrieveCompanyByIdAsync(Id);
@@ -92,6 +97,7 @@ namespace ProductManagement.MVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin, Manager")]
         public ActionResult Create()
         {
             
@@ -99,6 +105,7 @@ namespace ProductManagement.MVC.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "SuperAdmin, Manager")]
         public async Task<ActionResult> Create(CompanyForCreateViewModel companyForCreateViewModel)
 
         {
@@ -119,6 +126,7 @@ namespace ProductManagement.MVC.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<ActionResult> Delete(Guid Id)
         {
             // var company = await companyService.RetrieveCompanyByIdAsync(Id);

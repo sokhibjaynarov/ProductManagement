@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProductManagement.MVC.Brokers.UserManagement;
 using ProductManagement.MVC.Models;
 using System;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProductManagement.MVC.Controllers
 {
+    [Authorize(Roles = "SuperAdmin")]
     public class UserController : Controller
     {
         private readonly IUserManagementBroker userManagementBroker;

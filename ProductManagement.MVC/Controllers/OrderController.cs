@@ -10,6 +10,7 @@ using System.Linq;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using System.Collections.Generic;
 using ProductManagement.MVC.Enums;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProductManagement.MVC.Controllers
 {
@@ -27,6 +28,7 @@ namespace ProductManagement.MVC.Controllers
         }
 
         // GET: Orders 
+        [Authorize(Roles = "SuperAdmin, Admin, Manager, Worker")]
         public IActionResult Index()
         {
             var orders = orderService.RetrieveAllOrders().ToList();
@@ -61,6 +63,7 @@ namespace ProductManagement.MVC.Controllers
         }
 
         // GET: For details order
+        [Authorize(Roles = "SuperAdmin, Admin, Manager, Worker")]
         public async Task<ActionResult> Details(Guid Id)
         {
             var order = await orderService.RetrieveOrderByIdAsync(Id);
@@ -87,6 +90,7 @@ namespace ProductManagement.MVC.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "SuperAdmin, Manager")]
         public ActionResult Create()
         {
             var companies = companyService.RetrieveAllCompanies().ToList();
@@ -98,6 +102,7 @@ namespace ProductManagement.MVC.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "SuperAdmin, Manager")]
         public async Task<ActionResult> Create(OrderForCreateViewModel viewModel)
         {
             var order = new Order()
@@ -120,6 +125,7 @@ namespace ProductManagement.MVC.Controllers
         }
 
         // GET: For edit user
+        [Authorize(Roles = "SuperAdmin, Manager")]
         public async Task<ActionResult> Edit(Guid Id)
         {
             var order = await orderService.RetrieveOrderByIdAsync(Id);
@@ -149,6 +155,7 @@ namespace ProductManagement.MVC.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "SuperAdmin, Manager")]
         public async Task<ActionResult> Edit(Order order)
         {
             var existOrder = await orderService.RetrieveOrderByIdAsync(order.OrderId);
@@ -167,6 +174,7 @@ namespace ProductManagement.MVC.Controllers
         }
 
         // GET: For edit user
+        [Authorize(Roles = "SuperAdmin, Worker")]
         public async Task<ActionResult> EditStatus(Guid Id)
         {
             var order = await orderService.RetrieveOrderByIdAsync(Id);
@@ -194,6 +202,7 @@ namespace ProductManagement.MVC.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "SuperAdmin, Worker")]
         public async Task<ActionResult> EditStatus(OrderForEditStatusViewModel order)
         {
             var existOrder = await orderService.RetrieveOrderByIdAsync(order.OrderId);

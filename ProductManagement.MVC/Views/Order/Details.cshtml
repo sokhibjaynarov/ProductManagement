@@ -100,11 +100,11 @@
     </dl>
 </div>
 <p>
-    @if ((User.IsInRole("SuperAdmin1") || User.IsInRole("Manager")) && Model.Status != ProductManagement.MVC.Enums.OrderStatus.Completed)
+    @if (User.IsInRole("Manager") && (Model.Status != ProductManagement.MVC.Enums.OrderStatus.Completed || Model.Status != ProductManagement.MVC.Enums.OrderStatus.Canceled))
     {
         <a class="btn btn-primary" href='@Url.ActionLink("Edit", "Order", new { id = Model.OrderId })'> Edit </a>
     }
-    else if (User.IsInRole("SuperAdmin") || User.IsInRole("Worker"))
+    else if (User.IsInRole("Worker") && (Model.Status != ProductManagement.MVC.Enums.OrderStatus.Completed || Model.Status != ProductManagement.MVC.Enums.OrderStatus.Canceled))
     {
         <a class="btn btn-primary" href='@Url.ActionLink("EditStatus", "Order", new { id = Model.OrderId })'> Edit </a>
     }

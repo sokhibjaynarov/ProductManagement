@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProductManagement.MVC.Models;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProductManagement.MVC.Controllers
 {
+    [Authorize(Roles = "SuperAdmin")]
     public class RoleManagerController : Controller
     {
         private readonly RoleManager<ApplicationRole> _roleManager;

@@ -55,14 +55,9 @@
     @*@Html.ActionLink("Edit", "Edit", new { id = Model.CompanyId }) |
     @Html.ActionLink("Back to List", "Index")*@
 
-    @if ((User.IsInRole("SuperAdmin1") || User.IsInRole("Manager") || User.IsInRole("SuperAdmin")))
+    @if (User.IsInRole("SuperAdmin") || User.IsInRole("Manager"))
     {
-        <a class="btn btn-primary" href='@Url.ActionLink("Edit", "Edit", new { id = Model.CompanyId })'> Edit </a>
+        <a class="btn btn-primary" href='@Url.ActionLink("Edit", "Company", new { id = Model.CompanyId })'> Edit </a>
     }
-
-    @*else if (User.IsInRole("SuperAdmin"))
-    {
-        <a class="btn btn-primary" href='@Url.ActionLink("EditStatus", "Order", new { id = Model.OrderId })'> Edit </a>
-    }
-    <a class="btn btn-primary" href='@Url.ActionLink("Index", "Order", new { id = Model.OrderId })'> Back to List </a>*@
+    @Html.ActionLink("Back to List", "Index")
 </p>

@@ -47,12 +47,15 @@
                 @Html.ActionLink("Details", "Details", new { id=item.CompanyId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.CompanyId})*@
 
-                @if ((User.IsInRole("SuperAdmin1") || User.IsInRole("Manager") || User.IsInRole("SuperAdmin")))
+                @if ((User.IsInRole("SuperAdmin") || User.IsInRole("Manager")))
                 {
                     <a href='@Url.ActionLink("Edit", "Company", new { id = item.CompanyId })'> Edit | </a>
                 }              
-                @Html.ActionLink("Details", "Details", new { id = item.CompanyId  }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.CompanyId })
+                @Html.ActionLink("Details", "Details", new { id = item.CompanyId  })
+                @if (User.IsInRole("SuperAdmin"))
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CompanyId })
+                }
 
             </td>
         </tr>
