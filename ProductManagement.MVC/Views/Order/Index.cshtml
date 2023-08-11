@@ -5,11 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Orders</h2>
+<h2>Buyurtmalar ro'yxati</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (User.IsInRole("SuperAdmin") || User.IsInRole("Manager"))
+{
+    <p>
+        @Html.ActionLink("Buyurtma yaratish", "Create")
+    </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -58,18 +61,18 @@
                 @Html.DisplayFor(modelItem => item.Deadline)
             </td>
             <td>
-                @if (User.IsInRole("Manager") && (item.Status != ProductManagement.MVC.Enums.OrderStatus.Completed || item.Status != ProductManagement.MVC.Enums.OrderStatus.Canceled))
+                @if (User.IsInRole("Manager") && item.Status != ProductManagement.MVC.Enums.OrderStatus.Completed && item.Status != ProductManagement.MVC.Enums.OrderStatus.Canceled)
                 {
-                    <a href='@Url.ActionLink("Edit", "Order", new { id = item.OrderId })'> Edit | </a>
+                    <a href='@Url.ActionLink("Edit", "Order", new { id = item.OrderId })'> Tahrirlash | </a>
                 }
-                else if (User.IsInRole("Worker") && (item.Status != ProductManagement.MVC.Enums.OrderStatus.Completed || item.Status != ProductManagement.MVC.Enums.OrderStatus.Canceled))
+                else if (User.IsInRole("Worker") && item.Status != ProductManagement.MVC.Enums.OrderStatus.Completed && item.Status != ProductManagement.MVC.Enums.OrderStatus.Canceled)
                 {
-                    <a href='@Url.ActionLink("EditStatus", "Order", new { id = item.OrderId })'> Edit | </a>
+                    <a href='@Url.ActionLink("EditStatus", "Order", new { id = item.OrderId })'> Tahrirlash | </a>
                 }
-                @Html.ActionLink("Details", "Details", new { id = item.OrderId  })
+                @Html.ActionLink("Ma'lumot", "Details", new { id = item.OrderId  })
                 @if (User.IsInRole("SuperAdmin"))
                 {
-                   @Html.ActionLink("Delete", "Delete", new { id = item.OrderId })
+                   @Html.ActionLink("O'chirish", "Delete", new { id = item.OrderId })
                 }
             </td>
         </tr>

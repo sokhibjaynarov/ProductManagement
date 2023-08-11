@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<div>Order Details</div>
+<div>Buyurtma haqida ma'lumot</div>
 
 <div>
     <hr />
@@ -102,11 +102,11 @@
 <p>
     @if (User.IsInRole("Manager") && (Model.Status != ProductManagement.MVC.Enums.OrderStatus.Completed || Model.Status != ProductManagement.MVC.Enums.OrderStatus.Canceled))
     {
-        <a class="btn btn-primary" href='@Url.ActionLink("Edit", "Order", new { id = Model.OrderId })'> Edit </a>
+        <a class="btn btn-primary" href='@Url.ActionLink("Edit", "Order", new { id = Model.OrderId })'> Tahrirlash </a>
     }
     else if (User.IsInRole("Worker") && (Model.Status != ProductManagement.MVC.Enums.OrderStatus.Completed || Model.Status != ProductManagement.MVC.Enums.OrderStatus.Canceled))
     {
-        <a class="btn btn-primary" href='@Url.ActionLink("EditStatus", "Order", new { id = Model.OrderId })'> Edit </a>
+        <a class="btn btn-primary" href='@Url.ActionLink("EditStatus", "Order", new { id = Model.OrderId })'> Tahrirlash </a>
     }
-    <a class="btn btn-primary" href='@Url.ActionLink("Index", "Order", new { id = Model.OrderId })'> Back to List </a>
+    <a class="btn btn-primary" href='@Url.ActionLink("Index", "Order", new { id = Model.OrderId })'> Buyurtmalar sahifasiga qaytish </a>
 </p> 

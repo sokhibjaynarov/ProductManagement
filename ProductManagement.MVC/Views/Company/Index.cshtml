@@ -5,11 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Companies</h2>
+<h2>Kompaniyalar ro'yxati</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (User.IsInRole("SuperAdmin") || User.IsInRole("Manager"))
+{
+    <p>
+        @Html.ActionLink("Kompaniya yaratish", "Create")
+    </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -46,12 +49,12 @@
 
                 @if ((User.IsInRole("SuperAdmin") || User.IsInRole("Manager")))
                 {
-                    <a href='@Url.ActionLink("Edit", "Company", new { id = item.CompanyId })'> Edit | </a>
+                    <a href='@Url.ActionLink("Edit", "Company", new { id = item.CompanyId })'> Tahrirlash | </a>
                 }              
-                @Html.ActionLink("Details", "Details", new { id = item.CompanyId  })
+                @Html.ActionLink("Ma'lumot", "Details", new { id = item.CompanyId  })
                 @if (User.IsInRole("SuperAdmin"))
                 {
-                    @Html.ActionLink("Delete", "Delete", new { id = item.CompanyId })
+                    @Html.ActionLink("O'chirish", "Delete", new { id = item.CompanyId })
                 }
 
             </td>

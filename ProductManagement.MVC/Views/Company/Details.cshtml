@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<div>Details</div>
+<div>Kompaniya haqida ma'lumot</div>
 
 <div>
     <hr />
@@ -41,23 +41,13 @@
             @Html.DisplayFor(model => model.NameOfPlace)
         </dd>
 
-       @* <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>*@
-
     </dl>
 </div>
 <p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.CompanyId }) |
-    @Html.ActionLink("Back to List", "Index")*@
 
     @if (User.IsInRole("SuperAdmin") || User.IsInRole("Manager"))
     {
-        <a class="btn btn-primary" href='@Url.ActionLink("Edit", "Company", new { id = Model.CompanyId })'> Edit </a>
+        <a class="btn btn-primary" href='@Url.ActionLink("Edit", "Company", new { id = Model.CompanyId })'> Tahrirlash </a>
     }
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Kompaniyalar sahifasiga qaytish", "Index")
 </p>
