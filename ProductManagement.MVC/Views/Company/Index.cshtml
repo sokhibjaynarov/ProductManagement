@@ -43,9 +43,6 @@
                 @Html.DisplayFor(modelItem => item.Address)
             </td>
             <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id=item.CompanyId }) |
-                @Html.ActionLink("Details", "Details", new { id=item.CompanyId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.CompanyId})*@
 
                 @if ((User.IsInRole("SuperAdmin") || User.IsInRole("Manager")))
                 {

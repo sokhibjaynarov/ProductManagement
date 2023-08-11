@@ -36,7 +36,7 @@ namespace ProductManagement.MVC.ViewModels.Order
         [DisplayName("Izoh")]
         public string Comment { get; set; }
 
-        [DisplayName("Tugash muddati")]
+        [DisplayName("Yetkazish vaqti")]
         public DateTime Deadline { get; set; }
 
         [DisplayName("Yaratilgan vaqti")]

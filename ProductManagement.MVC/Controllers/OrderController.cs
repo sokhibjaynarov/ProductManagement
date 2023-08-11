@@ -103,23 +103,26 @@ namespace ProductManagement.MVC.Controllers
         [Authorize(Roles = "SuperAdmin, Manager")]
         public async Task<ActionResult> Create(OrderForCreateViewModel viewModel)
         {
-            var order = new Order()
+            if (ModelState.IsValid)
             {
-                // TypeOfProduct = viewModel.TypeOfProduct,
-                VolumeProduct = viewModel.VolumeProduct,
-                Height = viewModel.Height,
-                High = viewModel.High,
-                Width = viewModel.Width,
-                Status = Enums.OrderStatus.Ordered,
-                CreateDate = DateTime.UtcNow,
-                Deadline = viewModel.Deadline,
-                Comment = viewModel.Comment,
-                CompanyId = viewModel.CompanyId,
-            };
+                var order = new Order()
+                {
+                    VolumeProduct = viewModel.VolumeProduct,
+                    Height = viewModel.Height,
+                    High = viewModel.High,
+                    Width = viewModel.Width,
+                    Status = Enums.OrderStatus.Ordered,
+                    CreateDate = DateTime.UtcNow,
+                    Deadline = viewModel.Deadline,
+                    Comment = viewModel.Comment,
+                    CompanyId = viewModel.CompanyId,
+                };
 
-            await orderService.AddOrderAsync(order);
-            ViewBag.Message = "Data Insert Successfully";
-            return RedirectToAction("Index");
+                await orderService.AddOrderAsync(order);
+                ViewBag.Message = "Data Insert Successfully";
+                return RedirectToAction("Index");
+            }
+            return View(viewModel);
         }
 
         // GET: For edit user
@@ -156,19 +159,24 @@ namespace ProductManagement.MVC.Controllers
         [Authorize(Roles = "SuperAdmin, Manager")]
         public async Task<ActionResult> Edit(Order order)
         {
-            var existOrder = await orderService.RetrieveOrderByIdAsync(order.OrderId);
+            if (ModelState.IsValid)
+            {
+                var existOrder = await orderService.RetrieveOrderByIdAsync(order.OrderId);
 
-            existOrder.VolumeProduct = order.VolumeProduct;
-            existOrder.Height = order.Height;
-            existOrder.Width = order.Width;
-            existOrder.High = order.High;
-            existOrder.CompanyId = order.CompanyId;
-            existOrder.Comment = order.Comment;
-            existOrder.Deadline = order.Deadline;
+                existOrder.VolumeProduct = order.VolumeProduct;
+                existOrder.Height = order.Height;
+                existOrder.Width = order.Width;
+                existOrder.High = order.High;
+                existOrder.CompanyId = order.CompanyId;
+                existOrder.Comment = order.Comment;
+                existOrder.Deadline = order.Deadline;
+                existOrder.Status = OrderStatus.ReOrdered;
 
-            await orderService.ModifyOrderAsync(existOrder);
+                await orderService.ModifyOrderAsync(existOrder);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            return View(order);
         }
 
         // GET: For edit user
@@ -178,7 +186,6 @@ namespace ProductManagement.MVC.Controllers
             var order = await orderService.RetrieveOrderByIdAsync(Id);
 
             var company = await companyService.RetrieveCompanyByIdAsync(order.CompanyId);
-            var companies = companyService.RetrieveAllCompanies().ToList();
 
             var orderViewModel = new OrderForEditStatusViewModel()
             {
@@ -203,18 +210,22 @@ namespace ProductManagement.MVC.Controllers
         [Authorize(Roles = "SuperAdmin, Worker")]
         public async Task<ActionResult> EditStatus(OrderForEditStatusViewModel order)
         {
-            var existOrder = await orderService.RetrieveOrderByIdAsync(order.OrderId);
-
-            if (order.IsOrderCompleted && existOrder.Status != OrderStatus.Completed)
+            if (ModelState.IsValid)
             {
-                existOrder.Status = OrderStatus.Completed;
+                var existOrder = await orderService.RetrieveOrderByIdAsync(order.OrderId);
+
+                if (order.IsOrderCompleted && existOrder.Status != OrderStatus.Completed)
+                {
+                    existOrder.Status = OrderStatus.Completed;
+                }
+
+                existOrder.Comment = order.Comment;
+
+                await orderService.ModifyOrderAsync(existOrder);
+
+                return RedirectToAction("Index");
             }
-
-            existOrder.Comment = order.Comment;
-
-            await orderService.ModifyOrderAsync(existOrder);
-
-            return RedirectToAction("Index");
+            return View(order);
         }
 
         [Authorize(Roles = "SuperAdmin")]
