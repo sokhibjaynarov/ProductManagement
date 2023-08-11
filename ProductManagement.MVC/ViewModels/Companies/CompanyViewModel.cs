@@ -5,7 +5,7 @@ namespace ProductManagement.MVC.ViewModels.Companies
 {
     public class CompanyViewModel
     {
-        [DisplayName("Companiya raqami")]
+        [DisplayName("Kompaniya raqami")]
         public Guid CompanyId { get; set; }
 
         [DisplayName("Kompaniya nomi")]

@@ -25,21 +25,27 @@ namespace ProductManagement.MVC.Controllers
         public IActionResult Index()
         {
 
-            var companies = companyService.RetrieveAllCompanies().ToList();
+            
             var companiesViewModel = new List<CompanyViewModel>();
-
-            foreach (Company company in companies)
+            if (companyService.RetrieveAllCompanies()!= null)
             {
-                companiesViewModel.Add(new CompanyViewModel()
+                var companies = companyService.RetrieveAllCompanies().ToList();
+                if (companies != null)
                 {
-                    CompanyId = company.CompanyId,
-                    CompanyName = company.CompanyName,
-                    Address = company.Address,
-                    INN = company.INN,
-                    NameOfPlace = company.NameOfPlace,
-                });
-            }
 
+                    foreach (Company company in companies)
+                    {
+                        companiesViewModel.Add(new CompanyViewModel()
+                        {
+                            CompanyId = company.CompanyId,
+                            CompanyName = company.CompanyName,
+                            Address = company.Address,
+                            INN = company.INN,
+                            NameOfPlace = company.NameOfPlace,
+                        });
+                    }
+                }
+            }
 
             return View(companiesViewModel);
         }
