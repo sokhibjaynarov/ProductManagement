@@ -57,7 +57,7 @@ namespace ProductManagement.MVC.Controllers
                 }
             };
 
-            return View(ordersViewModel);
+            return View(ordersViewModel.OrderByDescending(order => order.CreateDate));
         }
 
         // GET: For details order
